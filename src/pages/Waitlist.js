@@ -32,11 +32,27 @@ const Waitlist = () => {
       setOtp(value);
     }
   };
-
-  const handleVerifyCode = () => {
-    if (otp.length === 6) {
-      setCurrentStep(stepsEnum.JOIN_FAST_TRACK);
-    } else {
+  const handleVerifyCode = async () => {
+    if ((otp.length === 6) || (otp.toUpperCase() === 'CASH')) {
+      const res = await fetch(`${API_BASE_URL}/api/verify-referral-code`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          referred_by: otp.toUpperCase(),
+        }),
+      });
+      const data = res.json();
+      if (res.ok){
+        toast.success("Referral code is " + data.message);
+        setCurrentStep(stepsEnum.JOIN_FAST_TRACK);
+      }
+      else{
+        toast.error(data.error);
+      }
+    }
+    else{
       toast.error("Invalid Referral Code");
     }
   };
@@ -213,7 +229,6 @@ const JoinFastTrackContent = ({ setCurrentStep, otp, setReferralCode }) => {
         }),
       });
       const data = await res.json();
-      console.log("RESPONSE:", data);
       if (res.ok){
         setReferralCode(data.referral_code);
         setCurrentStep(stepsEnum.WELCOME);
