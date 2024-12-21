@@ -45,11 +45,11 @@ const Waitlist = () => {
       });
       const data = res.json();
       if (res.ok){
-        toast.success("Referral code is " + data.message);
+        toast.success("Referral code is available");
         setCurrentStep(stepsEnum.JOIN_FAST_TRACK);
       }
       else{
-        toast.error(data.error);
+        toast.error("Referral code is unavailable");
       }
     }
     else{
