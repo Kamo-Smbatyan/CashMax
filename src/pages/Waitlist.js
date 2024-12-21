@@ -15,7 +15,7 @@ const stepsEnum = {
   WELCOME: "WELCOME",
 };
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000'
+const API_BASE_URL = process.env.BASE_API_URL || 'http://localhost:5000'
 const Waitlist = () => {
   const [currentStep, setCurrentStep] = useState(stepsEnum.CODE);
 
