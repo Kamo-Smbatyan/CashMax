@@ -15,7 +15,7 @@ const stepsEnum = {
   WELCOME: "WELCOME",
 };
 
-const API_BASE_URL = process.env.BASE_API_URL || 'https://skylark-game-mammoth.ngrok-free.app/'
+const API_BASE_URL = process.env.BASE_API_URL || 'https://skylark-game-mammoth.ngrok-free.app'
 const Waitlist = () => {
   const [currentStep, setCurrentStep] = useState(stepsEnum.CODE);
 
