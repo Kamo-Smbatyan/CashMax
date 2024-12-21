@@ -43,7 +43,7 @@ const Waitlist = () => {
           referred_by: otp.toUpperCase(),
         }),
       });
-      const data = res.json();
+      //const data = res.json();
       if (res.ok){
         toast.success("Referral code is available");
         setCurrentStep(stepsEnum.JOIN_FAST_TRACK);
